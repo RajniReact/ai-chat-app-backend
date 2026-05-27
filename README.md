@@ -92,11 +92,3 @@ Verifies the Razorpay signature server-side; on success emits
 | `send_message` | client → server | `{ id, text, senderId, senderName, senderPicture, time }` | send a chat message |
 | `receive_message` | server → everyone | same as above | broadcast to the room |
 | `premium_unlocked` | server → everyone | `{ userId }` | sent after a verified payment so that user's UI unlocks instantly |
-
-## Deployment (Render)
-
-- Build command: `npm install`
-- Start command: `npm start`
-- Add the same environment variables in the Render dashboard.
-- The server uses `process.env.PORT`, which Render sets automatically.
-- WebSockets work on Render with no extra configuration.
