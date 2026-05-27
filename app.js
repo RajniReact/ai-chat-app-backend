@@ -13,8 +13,15 @@ class App {
   constructor() {
     this.app = express();
     this.server = http.createServer(this.app);
+    console.log("Server created", process.env.PORT, process.env.CLIENT_URL);
     this.io = new Server(this.server, {
-      cors: { origin: "*" },
+      cors: {
+        origin: [
+          "http://localhost:3000",
+          process.env.CLIENT_URL,
+        ],
+        credentials: true,
+      },
     });
 
     this.middleware();
@@ -38,9 +45,9 @@ class App {
   }
 
   start() {
-    this.server.listen(port, () => {
-      console.log(`Server running on port ${port}`);
-    });
+    this.server.listen(process.env.PORT || port, () => {
+  console.log("Server running");
+});
   }
 }
 
